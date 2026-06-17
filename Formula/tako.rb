@@ -1,34 +1,34 @@
 class Tako < Formula
   desc "Deploy apps to a small takod mesh"
   homepage "https://github.com/redentordev/tako-cli"
-  version "0.4.21"
+  version "0.4.22"
   license "MIT"
 
   on_macos do
     on_intel do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.21/tako-darwin-amd64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.22/tako-darwin-amd64",
           using: :nounzip
-      sha256 "927ac0a7a7fa30077dc30c0181b1ff5ae767224bcb31d70e4d267b86359f926e"
+      sha256 "19542773378c43f4f1e8548fdf97445c1fc59e5ddbaf234c3764371745885a83"
     end
 
     on_arm do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.21/tako-darwin-arm64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.22/tako-darwin-arm64",
           using: :nounzip
-      sha256 "85bfe39e289b0ca4f1007293b829062bc4d833d29f0e4fdc0401c06c737fa21d"
+      sha256 "e0beec8b094e5428ac79e5f8735737e958eeee43643d4e36f60f6178924dbbc1"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.21/tako-linux-amd64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.22/tako-linux-amd64",
           using: :nounzip
-      sha256 "b7b61dbc499a49c1cf42b123fd5b6b0101f28af606d8bbd6fbd8f2cc736a1617"
+      sha256 "dad4dbe6736c52bf06889741ec751814925d2bc33082b83440659853e788a8b5"
     end
 
     on_arm do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.21/tako-linux-arm64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.4.22/tako-linux-arm64",
           using: :nounzip
-      sha256 "dda0b1ac811fcd82e3e52647dc5a0bb4dafe2218954e914c700833bf7a2050cd"
+      sha256 "d09be3d9faeae7ecb3090f907a1cec41399c2b9e3b1ce47eedf6b7ae24ad5939"
     end
   end
 
@@ -37,6 +37,6 @@ class Tako < Formula
   end
 
   test do
-    assert_match "Tako CLI v0.4.21", shell_output("#{bin}/tako --version")
+    assert_match "Tako CLI v0.4.22", shell_output("#{bin}/tako --version")
   end
 end
