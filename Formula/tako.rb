@@ -1,40 +1,40 @@
 class Tako < Formula
   desc "Deploy apps to a small takod mesh"
   homepage "https://github.com/redentordev/tako-cli"
-  version "0.9.1"
+  version "0.9.2"
   license "MIT"
 
   on_macos do
     on_intel do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.1/tako-darwin-amd64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.2/tako-darwin-amd64",
           using: :nounzip
-      sha256 "e7cecaeb9a902061df3cda71f2832170070fa76189796101ea9cc7f500e64cbd"
+      sha256 "cbd279dffd8a7147f46a430eb6cfaccdad882fca504bd01e73dcf61596ceeadf"
     end
 
     on_arm do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.1/tako-darwin-arm64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.2/tako-darwin-arm64",
           using: :nounzip
-      sha256 "c6e40974ef45a7ac11b177294539a69030c92d1a75720fe191d03596c4cd174c"
+      sha256 "1f5b9f2de700d1cbf48108ddc064f7ae550a0de9af5a6b876525697cf2c505af"
     end
   end
 
   on_linux do
     on_intel do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.1/tako-linux-amd64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.2/tako-linux-amd64",
           using: :nounzip
-      sha256 "4bc825cf0ef2f9f80bf71f5a2d3875b5b7c546d4aecf8e8e6baf9abd6a075f0f"
+      sha256 "809a5e41be60c05ea34276fbcfa419285b6fe99c41e40fb33360dfd65f1427e3"
     end
 
     on_arm do
-      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.1/tako-linux-arm64",
+      url "https://github.com/redentordev/tako-cli/releases/download/v0.9.2/tako-linux-arm64",
           using: :nounzip
-      sha256 "22e4b590a7c2ac770cead10e20c2e5f32c3a543a9b912a689a9e30852f9ec409"
+      sha256 "c21102542bb1bb9be3900e9ea0808cae2a497f59ba9eb02ab3ad9b52514887f6"
     end
   end
 
   resource "manpages" do
-    url "https://github.com/redentordev/tako-cli/releases/download/v0.9.1/tako-manpages.tar.gz"
-    sha256 "dc2b7eecb712d629ad30887dc9957991c87d48d49db558ad678c5a75ad72e95d"
+    url "https://github.com/redentordev/tako-cli/releases/download/v0.9.2/tako-manpages.tar.gz"
+    sha256 "3bf574b3693c0ad67c7de8a45e8afb87482f21bc2db4958559c8f4c13b404d60"
   end
 
   def install
@@ -45,6 +45,6 @@ class Tako < Formula
   end
 
   test do
-    assert_match "Tako CLI v0.9.1", shell_output("#{bin}/tako --version")
+    assert_match "Tako CLI v0.9.2", shell_output("#{bin}/tako --version")
   end
 end
