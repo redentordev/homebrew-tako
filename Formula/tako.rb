@@ -1,7 +1,6 @@
 class Tako < Formula
   desc "Deploy apps to a small takod mesh"
   homepage "https://github.com/redentordev/tako-cli"
-  version "0.11.0"
   license "MIT"
 
   on_macos do
