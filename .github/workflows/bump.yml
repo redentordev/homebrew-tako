@@ -1,0 +1,60 @@
+name: Bump formula
+
+# Keeps Formula/tako.rb on the latest tako-cli release. tako-cli's release
+# workflow cannot push here without a cross-repo token, so this polls instead.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Release tag (e.g. v0.12.2); empty = latest"
+        required: false
+        type: string
+
+concurrency:
+  group: bump-formula
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Resolve release tag
+        id: tag
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_VERSION: ${{ inputs.version }}
+        run: |
+          set -euo pipefail
+          tag="${INPUT_VERSION:-}"
+          if [ -z "$tag" ]; then
+            tag="$(gh release view --repo redentordev/tako-cli --json tagName --jq .tagName)"
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "Target release: $tag"
+
+      - name: Update formula
+        run: python3 scripts/bump_formula.py "${{ steps.tag.outputs.tag }}"
+
+      - name: Check formula syntax
+        run: ruby -c Formula/tako.rb
+
+      - name: Commit and push
+        env:
+          TAG: ${{ steps.tag.outputs.tag }}
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- Formula/tako.rb; then
+            echo "No formula change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "tako ${TAG#v}" -- Formula/tako.rb
+          git push origin HEAD:main
